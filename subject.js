@@ -5,7 +5,7 @@ let products = [
                 "Location": "London",
                 "Price": 100,
                 "Space": 5,
-                "image": "Subjects//math.png"
+                "image": "Subjects//Math.png"
         },
 
         {
