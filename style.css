@@ -1,0 +1,20 @@
+div.itemBox{
+    display: inline-block;
+    border-style: solid;
+    text-align: center;
+    width: 150px;
+   
+}
+
+p.home{
+    border-style: solid;
+    border-width: 1px;
+    
+}
+
+div.main{
+   display: inline-block;
+   margin-left: 40cm;
+ 
+
+}
