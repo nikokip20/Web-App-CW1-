@@ -19,55 +19,62 @@
         <div v-if="showItems">
             <h1>Item stock:</h1>
             <div v-for="product in products" class="main">
-                
+                <!--Product div starts here-->
+
                 <div class="itemBox">
-                <p class="home">Subject: {{product.Subject}}</p>
-                <p class="home">Location: {{product.Location}} </p>
-                <p class="home">Price: {{product.Price}}</p>
-                <img v-bind:src="product.image" >
+                    <p class="home">Subject: {{product.Subject}}</p>
+                    <p class="home">Location: {{product.Location}} </p>
+                    <p class="home">Price: {{product.Price}}</p>
+                    <span class="home" v-if="itemleft(product)>=1">Space: {{itemleft(product)}}</span>
+                    <span class="home" v-else>Out of stock</span>
+                    <img v-bind:src="product.image">
 
 
 
-                <button v-if="canAddToCart(product)" v-on:click="addToCart(product)">Add to cart</button>
-                <button v-else disabeled>Out of stock</button>
+                    <button v-if="canAddToCart(product)" v-on:click="addToCart(product)">Add to cart</button>
+                    <button v-else disabeled>Out of stock</button>
 
                 </div>
+                <!--End of div for products-->
             </div>
 
 
         </div>
-            <div v-else>
-                <h2>Checkout page:</h2>
-                <strong>Name:</strong>
-                <input type="name" v-model.trim="details.name">
+        <div v-else>
+            <!--Chekout div starts here-->
+            <h2>Checkout page:</h2>
+            <!--Asking user for details before chekout-->
+            <strong>Name:</strong>
+            <input type="name" v-model.trim="details.name">
 
-                <strong>Surname:</strong>
-                <input type="name" v-model.trim="details.surname">
+            <strong>Surname:</strong>
+            <input type="name" v-model.trim="details.surname">
 
-                <strong>PhoneNo:</strong>
-                <input type="number" v-model.trim="details.phoneNo">
+            <strong>PhoneNo:</strong>
+            <input type="number" v-model.trim="details.phoneNo">
 
-                <strong>Address:</strong>
-                <input type="name" v-model.trim="details.address">
-
-
-
-                <h3>Order Details:</h3>
-                <p>Name: {{details.name}}</p>
-                <p>Surname: {{details.surname}}</p>
-                <p>PhoneNo: {{details.phoneNO}}</p>
-                <p>Address : {{details.address}}</p>
-
-                <button v-on:click="submitForm(details)">Place order</button>
-            </div>
-</div>
-
-        
-
-<script type="text/javascript" src="subject.js"></script>
+            <strong>Address:</strong>
+            <input type="name" v-model.trim="details.address">
 
 
-<script src="app.js"></script>
+
+            <h3>Order Details:</h3>
+            <p>Name: {{details.name}}</p>
+            <p>Surname: {{details.surname}}</p>
+            <p>PhoneNo: {{details.phoneNO}}</p>
+            <p>Address : {{details.address}}</p>
+            <!--Displaying the data that the user entered-->
+            <button v-on:click="submitForm(details)">Place order</button>
+        </div>
+        <!--End of div for checkout-->
+    </div>
+
+
+
+    <script type="text/javascript" src="subject.js"></script>
+
+
+    <script src="app.js"></script>
 </body>
 
 </html>
