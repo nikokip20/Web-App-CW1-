@@ -6,37 +6,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-
+    <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
 </head>
 
 <body>
     <div id="app">
 
-        <button>{{cartItemCount}}Checkout</button>
+        <button v-on:click="toggleBasket">{{cartItemCount}}Checkout</button>
+
+
+        <div v-if="showItems">
+            <h1>Item stock:</h1>
+            <div v-for="product in products" class="main">
+                
+                <div class="itemBox">
+                <p class="home">Subject: {{product.Subject}}</p>
+                <p class="home">Location: {{product.Location}} </p>
+                <p class="home">Price: {{product.Price}}</p>
+                <img v-bind:src="product.image" >
 
 
 
-        <div v-for="product in products">
+                <button v-if="canAddToCart(product)" v-on:click="addToCart(product)">Add to cart</button>
+                <button v-else disabeled>Out of stock</button>
 
-            <p>Subject: {{product.Subject}}</p>
-            <p>Location: {{product.Location}} </p>
-            <p>Price:  {{product.Price}}</p>
-            <img v-bind:src="product.image">
+                </div>
+            </div>
 
-
-
-            <button v-if="canAddToCart(product)" v-on:click="addToCart(product)">Add to cart</button>
-            <button v-else disabeled>Out of stock</button>
 
         </div>
-    </div>
+            <div v-else>
+                <h2>Checkout page:</h2>
+                <strong>Name:</strong>
+                <input type="name" v-model.trim="details.name">
+
+                <strong>Surname:</strong>
+                <input type="name" v-model.trim="details.surname">
+
+                <strong>PhoneNo:</strong>
+                <input type="number" v-model.trim="details.phoneNo">
+
+                <strong>Address:</strong>
+                <input type="name" v-model.trim="details.address">
 
 
-    <script type="text/javascript" src="subject.js"></script>
+
+                <h3>Order Details:</h3>
+                <p>Name: {{details.name}}</p>
+                <p>Surname: {{details.surname}}</p>
+                <p>PhoneNo: {{details.phoneNO}}</p>
+                <p>Address : {{details.address}}</p>
+
+                <button v-on:click="submitForm(details)">Place order</button>
+            </div>
+</div>
+
+        
+
+<script type="text/javascript" src="subject.js"></script>
 
 
-    <script src="app.js"></script>
+<script src="app.js"></script>
 </body>
 
 </html>
